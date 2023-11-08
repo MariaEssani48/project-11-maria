@@ -34,7 +34,7 @@ for(let i = 1; i <= 2; i++){
     let accA = new bankAccount(name, 1000+i, balance)
     myBank.addAccount(accA);
 }
-console.log(myBank);
+
 
 async function askDetails(){
    let details = await inquirer.prompt({
@@ -53,11 +53,17 @@ async function askDetails(){
     }
 }     
 
+const sleep = () => {
+    return new Promise((r) =>
+     {setTimeout(r,5000)});
+};
+
 
 // bank functionality
 async function services(bank: Bank) {
     let account = await askDetails();
     while(account?.accountNumber != undefined){
+    await sleep();
     console.clear();    
     let service = await inquirer.prompt({
     type: "list",

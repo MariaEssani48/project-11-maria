@@ -42,10 +42,14 @@ async function askDetails() {
         return account;
     }
 }
+const sleep = () => {
+    return new Promise((r) => { setTimeout(r, 5000); });
+};
 // bank functionality
 async function services(bank) {
     let account = await askDetails();
     while (account?.accountNumber != undefined) {
+        await sleep();
         console.clear();
         let service = await inquirer.prompt({
             type: "list",
